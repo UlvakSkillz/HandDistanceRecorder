@@ -47,7 +47,7 @@ namespace HandDistanceRecorder
             if (lastHandPositionL == null || lastHandPositionR == null) { return; }
             if (DateTime.Now < waitTill)
             {
-                GameObject VR = PlayerManager.instance.localPlayer.Controller.gameObject.transform.GetChild(1).gameObject;
+                GameObject VR = PlayerManager.instance.localPlayer.Controller.gameObject.transform.GetChild(2).gameObject;
                 handLTransform = VR.transform.GetChild(1);
                 handRTransform = VR.transform.GetChild(2);
                 lastHandPositionL.transform.position = handLTransform.position;
@@ -86,7 +86,7 @@ namespace HandDistanceRecorder
                 {
                     yield break;
                 }
-                GameObject VR = PlayerManager.instance.localPlayer.Controller.gameObject.transform.GetChild(1).gameObject;
+                GameObject VR = PlayerManager.instance.localPlayer.Controller.gameObject.transform.GetChild(2).gameObject;
                 lastHandPositionL = new GameObject();
                 lastHandPositionR = new GameObject();
                 lastHandPositionL.transform.parent = VR.transform;
@@ -95,7 +95,7 @@ namespace HandDistanceRecorder
                 handRTransform = VR.transform.GetChild(2);
                 GameObject textLeft = Calls.Create.NewText();
                 textLeft.name = "TextLeft";
-                textLeft.transform.parent = PlayerManager.instance.localPlayer.Controller.gameObject.transform.GetChild(0).GetChild(1).GetChild(0).GetChild(4).GetChild(0).GetChild(1).GetChild(0).GetChild(0).GetChild(0);
+                textLeft.transform.parent = PlayerManager.instance.localPlayer.Controller.gameObject.transform.GetChild(1).GetChild(1).GetChild(0).GetChild(4).GetChild(0).GetChild(1).GetChild(0).GetChild(0).GetChild(0);
                 textLeft.transform.localPosition = new Vector3(0.0372f, 0.115f, 0);
                 textLeft.transform.localRotation = Quaternion.Euler(7.2175f, 269.9012f, 358.3884f);
                 textL = textLeft.GetComponent<TextMeshPro>();
@@ -109,7 +109,7 @@ namespace HandDistanceRecorder
                 textL.outlineWidth = 0.25f;
                 GameObject textRight = Calls.Create.NewText();
                 textRight.name = "TextRight";
-                textRight.transform.parent = PlayerManager.instance.localPlayer.Controller.gameObject.transform.GetChild(0).GetChild(1).GetChild(0).GetChild(4).GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(0);
+                textRight.transform.parent = PlayerManager.instance.localPlayer.Controller.gameObject.transform.GetChild(1).GetChild(1).GetChild(0).GetChild(4).GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(0);
                 textRight.transform.localPosition = new Vector3(-0.0372f, 0.1148f, 0);
                 textRight.transform.localRotation = Quaternion.Euler(7.1158f, 93.6177f, 0.9292f);
                 textR = textRight.GetComponent<TextMeshPro>();
