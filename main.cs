@@ -1,44 +1,87 @@
-﻿using MelonLoader;
-using UnityEngine;
-using System.Collections;
+﻿using HarmonyLib;
 using Il2CppRUMBLE.Managers;
-using System;
-using RumbleModdingAPI;
+using Il2CppRUMBLE.Players;
 using Il2CppTMPro;
+using MelonLoader;
+using RumbleModdingAPI.RMAPI;
+using System;
+using System.Collections;
+using UnityEngine;
 
 namespace HandDistanceRecorder
 {
     public class main : MelonMod
     {
-        private bool init = false;
-        private GameObject lastHandPositionL, lastHandPositionR;
-        private Transform handLTransform, handRTransform;
+        private static bool init = false;
+        private static GameObject lastHandPositionL, lastHandPositionR;
+        private static Transform handLTransform, handRTransform;
         private float distanceL = 0;
         private float distanceR = 0;
-        private DateTime waitTill;
-        private int sceneCount = 0;
-        private TextMeshPro textL, textR;
-        private string currentScene = "Loader";
+        private static DateTime waitTill;
+        private static TextMeshPro textL, textR;
 
-        public override void OnLateInitializeMelon()
+        [HarmonyPatch(typeof(PlayerController), "Initialize", new Type[] { typeof(Player) })]
+        public static class PlayerSpawn
         {
-            Calls.onMapInitialized += SceneLoaded;
-        }
-
-        private void SceneLoaded()
-        {
-            if (currentScene != "Loader")
+            private static void Postfix(ref PlayerController __instance, ref Player player)
             {
-                MelonCoroutines.Start(WaitBeforeRunningInit(sceneCount));
+                if (__instance.controllerType == ControllerType.Local)
+                {
+                    init = false;
+                    waitTill = DateTime.Now.AddSeconds(2);
+                    MelonCoroutines.Start(SetInitialHandPositions());
+                }
             }
         }
 
-        public override void OnSceneWasLoaded(int buildIndex, string sceneName)
+        public static IEnumerator SetInitialHandPositions()
         {
-            currentScene = sceneName;
-            sceneCount++;
-            init = false;
-            waitTill = DateTime.Now.AddSeconds(2);
+            yield return new WaitForFixedUpdate();
+
+            lastHandPositionL = new GameObject();
+            lastHandPositionL.name = "HandDistanceTrackerL";
+            lastHandPositionL.transform.parent = PlayerManager.instance.localPlayer.Controller.PlayerVR.transform;
+            handLTransform = PlayerManager.instance.localPlayer.Controller.PlayerVR.leftController.Transform;
+
+            lastHandPositionR = new GameObject();
+            lastHandPositionR.name = "HandDistanceTrackerR";
+            lastHandPositionR.transform.parent = PlayerManager.instance.localPlayer.Controller.PlayerVR.transform;
+            handRTransform = PlayerManager.instance.localPlayer.Controller.PlayerVR.rightController.Transform;
+
+            GameObject textLeft = Create.NewText();
+            textLeft.name = "TextLeft";
+            textLeft.transform.parent = PlayerManager.instance.localPlayer.Controller.PlayerScaling.RigDefinition.leftHandDefinition.Transform;
+            textLeft.transform.localPosition = new Vector3(0.0372f, 0.115f, 0);
+            textLeft.transform.localRotation = Quaternion.Euler(7.2175f, 269.9012f, 358.3884f);
+            textL = textLeft.GetComponent<TextMeshPro>();
+            textL.autoSizeTextContainer = true;
+            textL.enableWordWrapping = false;
+            textL.alignment = TextAlignmentOptions.Center;
+            textL.text = "0";
+            textL.fontSize = 0.25f;
+            textL.color = Color.white;
+            textL.outlineColor = Color.black;
+            textL.outlineWidth = 0.25f;
+
+            GameObject textRight = Create.NewText();
+            textRight.name = "TextRight";
+            textRight.transform.parent = PlayerManager.instance.localPlayer.Controller.PlayerScaling.RigDefinition.rightHandDefinition.Transform;
+            textRight.transform.localPosition = new Vector3(-0.0372f, 0.1148f, 0);
+            textRight.transform.localRotation = Quaternion.Euler(7.1158f, 93.6177f, 0.9292f);
+            textR = textRight.GetComponent<TextMeshPro>();
+            textR.autoSizeTextContainer = true;
+            textR.enableWordWrapping = false;
+            textR.alignment = TextAlignmentOptions.Center;
+            textR.text = "0";
+            textR.fontSize = 0.25f;
+            textR.color = Color.white;
+            textR.outlineColor = Color.black;
+            textR.outlineWidth = 0.25f;
+
+            lastHandPositionL.transform.position = handLTransform.localPosition;
+            lastHandPositionR.transform.position = handRTransform.localPosition;
+            init = true;
+            yield break;
         }
 
         public override void OnUpdate()
@@ -47,9 +90,8 @@ namespace HandDistanceRecorder
             if (lastHandPositionL == null || lastHandPositionR == null) { return; }
             if (DateTime.Now < waitTill)
             {
-                GameObject VR = PlayerManager.instance.localPlayer.Controller.gameObject.transform.GetChild(2).gameObject;
-                handLTransform = VR.transform.GetChild(1);
-                handRTransform = VR.transform.GetChild(2);
+                handLTransform = PlayerManager.instance.localPlayer.Controller.PlayerVR.leftController.Transform;
+                handRTransform = PlayerManager.instance.localPlayer.Controller.PlayerVR.rightController.Transform;
                 lastHandPositionL.transform.position = handLTransform.position;
                 lastHandPositionR.transform.position = handRTransform.position;
                 return;
@@ -60,77 +102,6 @@ namespace HandDistanceRecorder
             textR.text = distanceR.ToString("0.#");
             lastHandPositionL.transform.position = handLTransform.position;
             lastHandPositionR.transform.position = handRTransform.position;
-        }
-
-        public IEnumerator WaitBeforeRunningInit(int sceneChanges)
-        {
-            yield return new WaitForSeconds(1);
-            if (sceneChanges == sceneCount)
-            {
-                MelonCoroutines.Start(SetInitialHandPositions(sceneChanges));
-            }
-            yield break;
-        }
-
-        public IEnumerator SetInitialHandPositions(int sceneChanges)
-        {
-            yield return new WaitForFixedUpdate();
-            bool gotHands = false;
-            while (!gotHands)
-            {
-                while (PlayerManager.instance.localPlayer.Controller == null)
-                {
-                    yield return new WaitForFixedUpdate();
-                }
-                if (sceneCount != sceneChanges)
-                {
-                    yield break;
-                }
-                GameObject VR = PlayerManager.instance.localPlayer.Controller.gameObject.transform.GetChild(2).gameObject;
-                lastHandPositionL = new GameObject();
-                lastHandPositionR = new GameObject();
-                lastHandPositionL.transform.parent = VR.transform;
-                lastHandPositionR.transform.parent = VR.transform;
-                handLTransform = VR.transform.GetChild(1);
-                handRTransform = VR.transform.GetChild(2);
-                GameObject textLeft = Calls.Create.NewText();
-                textLeft.name = "TextLeft";
-                textLeft.transform.parent = PlayerManager.instance.localPlayer.Controller.gameObject.transform.GetChild(1).GetChild(1).GetChild(0).GetChild(4).GetChild(0).GetChild(1).GetChild(0).GetChild(0).GetChild(0);
-                textLeft.transform.localPosition = new Vector3(0.0372f, 0.115f, 0);
-                textLeft.transform.localRotation = Quaternion.Euler(7.2175f, 269.9012f, 358.3884f);
-                textL = textLeft.GetComponent<TextMeshPro>();
-                textL.autoSizeTextContainer = true;
-                textL.enableWordWrapping = false;
-                textL.alignment = TextAlignmentOptions.Center;
-                textL.text = "0";
-                textL.fontSize = 0.25f;
-                textL.color = Color.white;
-                textL.outlineColor = Color.black;
-                textL.outlineWidth = 0.25f;
-                GameObject textRight = Calls.Create.NewText();
-                textRight.name = "TextRight";
-                textRight.transform.parent = PlayerManager.instance.localPlayer.Controller.gameObject.transform.GetChild(1).GetChild(1).GetChild(0).GetChild(4).GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(0);
-                textRight.transform.localPosition = new Vector3(-0.0372f, 0.1148f, 0);
-                textRight.transform.localRotation = Quaternion.Euler(7.1158f, 93.6177f, 0.9292f);
-                textR = textRight.GetComponent<TextMeshPro>();
-                textR.autoSizeTextContainer = true;
-                textR.enableWordWrapping = false;
-                textR.alignment = TextAlignmentOptions.Center;
-                textR.text = "0";
-                textR.fontSize = 0.25f;
-                textR.color = Color.white;
-                textR.outlineColor = Color.black;
-                textR.outlineWidth = 0.25f;
-                lastHandPositionL.transform.position = handLTransform.localPosition;
-                lastHandPositionR.transform.position = handRTransform.localPosition;
-                if (handLTransform.position != null && handRTransform.position != null) { gotHands = true; }
-                if (!gotHands)
-                {
-                    yield return new WaitForFixedUpdate();
-                }
-            }
-            init = true;
-            yield break;
         }
     }
 }

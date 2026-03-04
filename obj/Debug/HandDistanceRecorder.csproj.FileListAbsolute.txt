@@ -10,7 +10,6 @@ C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\
 C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\MonoMod.RuntimeDetour.dll
 C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\Unity.TextMeshPro.dll
 C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\bHapticsLib.dll
-C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\AssetRipper.VersionUtilities.dll
 C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\AssetsTools.NET.dll
 C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\Tomlet.dll
 C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\Mono.Cecil.Pdb.dll
@@ -46,7 +45,6 @@ C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\
 C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\Il2CppSystem.Core.dll
 C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\WebSocketDotNet.dll
 C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\Unity.XR.Management.dll
-C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\Il2CppSystem.Numerics.dll
 C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\Unity.RenderPipeline.Universal.ShaderLibrary.dll
 C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\Unity.Mathematics.dll
 C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\Il2CppMono.Security.dll
@@ -81,7 +79,6 @@ C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\
 C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\Microsoft.Diagnostics.NETCore.Client.dll
 C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\RumbleModdingAPI.dll
 C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\Il2CppInterop.Common.dll
-C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\Il2CppLIV.dll
 C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\Il2CppInterop.Generator.dll
 C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\Il2CppInterop.Runtime.dll
 C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\Il2CppInterop.HarmonySupport.dll
@@ -187,9 +184,7 @@ C:\Users\austi\source\repos\.WorksButNeedsWork\HandDistanceRecorder\HandDistance
 C:\Users\austi\source\repos\.WorksButNeedsWork\HandDistanceRecorder\HandDistanceRecorder\obj\Debug\HandDistanceRecorder.pdb
 C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\Il2CppLIV.LCK.dll
 C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\Il2CppLIV.NativeAudioBridge.dll
-C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\Il2CppSystem.Net.Http.dll
 C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\Il2CppNativeGallery.dll
-C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\Il2CppNewtonsoft.Json.dll
 C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\Unity.VisualEffectGraph.Runtime.dll
 C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\Unity.RenderPipelines.GPUDriven.Runtime.dll
 C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\Unity.Collections.dll
@@ -197,8 +192,12 @@ C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\
 C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\UnityEngine.PropertiesModule.dll
 C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\UnityEngine.HierarchyCoreModule.dll
 C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\UnityEngine.InputForUIModule.dll
-C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\Il2CppSystem.Runtime.Serialization.dll
-C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\Il2CppSystem.Data.dll
-C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\Il2CppSystem.Xml.Linq.dll
 C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\UnityEngine.TerrainModule.dll
 C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\Unity.Burst.dll
+C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\Unity.Profiling.Core.dll
+C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\AssetRipper.Primitives.dll
+C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\Iced.dll
+C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\Il2CppLIV.LCKCore.dll
+C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\Il2CppLIV.LCKCore.ThirdParty.MessagePack.dll
+C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\MelonLoader.pdb
+C:\Users\austi\source\repos\HandDistanceRecorder\HandDistanceRecorder\bin\Debug\Il2CppSystem.Numerics.dll

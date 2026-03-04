@@ -4,11 +4,11 @@ using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
 // ...
-[assembly: MelonInfo(typeof(main), "HandDistanceRecorder", "2.2.0", "UlvakSkillz")]
+[assembly: MelonInfo(typeof(main), "HandDistanceRecorder", "2.3.1", "UlvakSkillz")]
 [assembly: MelonGame("Buckethead Entertainment", "RUMBLE")]
 [assembly: MelonColor(255, 195, 0, 255)]
 [assembly: MelonAuthorColor(255, 195, 0, 255)]
-[assembly: VerifyLoaderVersion(0, 6, 2, true)]
+[assembly: VerifyLoaderVersion(0, 7, 0, true)]
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
